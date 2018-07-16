@@ -1,0 +1,27 @@
+{
+  "name": "qs-url",
+  "version": "1.0.0",
+  "description": "an util that add|remove|replace|get query and hash from url which base on qs",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bolin-L/qs-url.git"
+  },
+  "keywords": [
+    "qs",
+    "url",
+    "qeury"
+  ],
+  "author": "liaobolin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bolin-L/qs-url/issues"
+  },
+  "homepage": "https://github.com/bolin-L/qs-url#readme",
+  "dependencies": {
+    "qs": "^6.5.2"
+  }
+}
