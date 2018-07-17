@@ -1,14 +1,12 @@
-import qs from 'qs';
-import query from './lib/query';
-import params from './lib/params';
-import baseUrl from 'baseUrl';
+import * as qs from 'qs';
+import * as query from './lib/query';
+import * as params from './lib/params';
+import baseUrl from './lib/baseUrl';
 
 
 export default {
-    ...qs,
-    ...query,
-    ...params,
-    setBaseUrl(url) {
-        baseUrl = url;
-    }
+    qs,
+    query,
+    params,
+    setBaseUrl: baseUrl.set
 };

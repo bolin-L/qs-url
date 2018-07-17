@@ -4,7 +4,7 @@
   "description": "an util that add|remove|replace|get query and hash from url which base on qs",
   "main": "index.js",
   "scripts": {
-    "test": "npm run test"
+    "test": "mocha ./test/index.js"
   },
   "repository": {
     "type": "git",
@@ -23,5 +23,11 @@
   "homepage": "https://github.com/bolin-L/qs-url#readme",
   "dependencies": {
     "qs": "^6.5.2"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-preset-es2015": "^6.24.1",
+    "chai": "^4.1.2",
+    "mocha": "^5.2.0"
   }
 }
