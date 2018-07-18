@@ -79,5 +79,33 @@ describe('Query', () => {
 
             expect(url).to.equal(`${BASE_URL}?id=2&status=success#/user/info?name=lbl`);
         });
+    });
+
+    describe('#replaceQuery', () => {
+        const BASE_URL = 'http://www.bolin.site';
+
+        it(`should be return ${BASE_URL}?id=2 when input {id: 2}`, () => {
+            const url = query.addQuery({id: 2}, BASE_URL);
+
+            expect(url).to.equal(`${BASE_URL}?id=2`);
+        });
+
+        it(`should be return ${BASE_URL}?id=2&status=success when input {id: 2, status: 'success'}`, () => {
+            const url = query.addQuery({id: 2, status: 'success'}, BASE_URL);
+
+            expect(url).to.equal(`${BASE_URL}?id=2&status=success`);
+        });
+
+        it(`should be return ${BASE_URL}?id=2&status=success when input {status: 'success'}`, () => {
+            const url = query.addQuery({status: 'success'}, `${BASE_URL}?id=2`);
+
+            expect(url).to.equal(`${BASE_URL}?id=2&status=success`);
+        });
+
+        it(`should be return ${BASE_URL}?id=2&status=success#/user/info?name=lbl when input {id: 2, status: 'success'}`, () => {
+            const url = query.addQuery({id: 2, status: 'success'}, `${BASE_URL}#/user/info?name=lbl`);
+
+            expect(url).to.equal(`${BASE_URL}?id=2&status=success#/user/info?name=lbl`);
+        });
     })
 });
