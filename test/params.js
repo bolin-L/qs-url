@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import params from '../lib/params';
+import params from '../src/params';
 
 const EXAMPLE_URL = 'http://www.bolin.site/user/?id=1&status=success#/user/info?name=lbl&userId=456';
 

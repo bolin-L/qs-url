@@ -1,7 +1,7 @@
 import qs from 'qs';
-import query from './lib/query';
-import params from './lib/params';
-import base from './lib/base';
+import query from './query';
+import params from './params';
+import base from './base';
 
 
 export default {

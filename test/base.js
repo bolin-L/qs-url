@@ -1,5 +1,5 @@
-import base from '../lib/base';
-import qsUrl from '../index';
+import base from '../src/base';
+import qsUrl from '../src/index';
 import { expect } from 'chai';
 
 const EXAMPLE_URL = 'http://www.bolin.site/user/?id=1#/user/info?name=lbl&userId=456';

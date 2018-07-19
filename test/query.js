@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import query from '../lib/query';
+import query from '../src/query';
 
 const EXAMPLE_URL = 'http://www.bolin.site/user/?id=1&status=success#/user/info?name=lbl&userId=456';
 
