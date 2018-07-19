@@ -45,20 +45,20 @@ const query3 = qsUrl.getQuery('status') // success
 |parse| - | - |
 |stringify| - | - |
 |formats| - | - |
-|getQuery| (string|array, [string|object]) | object|string |
-|addQuery| (object, [string|object]) | string |
-|removeQuery| (string|array, [string|object]) | string |
-|replaceQuery| (object, [string|object]) | string |
-|getParams| (string|array, [string|object]) | object|string |
-|addParams| (object, [string|object]) | string |
-|removeParams| (string|array, [string|object]) | string |
-|replaceParams| (object, [string|object]) | string |
-|getPath| ([string|object]) | string |
-|getPathAndQuery| ([string|object]) | string |
-|getPathAndHash| ([string|object]) | string |
+|getQuery| (string&array, [string&object]) | object|string |
+|addQuery| (object, [string&object]) | string |
+|removeQuery| (string&array, [string&object]) | string |
+|replaceQuery| (object, [string&object]) | string |
+|getParams| (string&array, [string&object]) | object&string |
+|addParams| (object, [string&object]) | string |
+|removeParams| (string&array, [string&object]) | string |
+|replaceParams| (object, [string&object]) | string |
+|getPath| ([string&object]) | string |
+|getPathAndQuery| ([string&object]) | string |
+|getPathAndHash| ([string&object]) | string |
 |setBaseUrl| (string) | - |
 |setBaseUrl| - | string |
-|parseUrl| ([string|object]) | object |
+|parseUrl| ([string&object]) | object |
 
 ****
 
