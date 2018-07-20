@@ -1,6 +1,6 @@
 {
   "name": "qs-url",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "an util that add|remove|replace|get query and hash from url which base on qs",
   "main": "./dist/qs-url.js",
   "scripts": {
