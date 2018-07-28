@@ -1,9 +1,22 @@
-import base from './base';
 import qs from 'qs';
+import base from './base';
 
+function composeUrl(urlInfo) {
+    const query = urlInfo.queryStr ? `?${urlInfo.queryStr}` : '';
+    const hash = urlInfo.hash ? `#${urlInfo.hash}` : '';
+    let params = '';
 
-function getParams(fields) {
-    const urlInfo = base.parseUrl(arguments[1]);
+    if (urlInfo.hash) {
+        params = urlInfo.paramsStr ? `?${urlInfo.paramsStr}` : '';
+    } else {
+        params = urlInfo.paramsStr ? `#?${urlInfo.paramsStr}` : '';
+    }
+
+    return `${urlInfo.url}${query}${hash}${params}`;
+}
+
+function getParams(fields, options) {
+    const urlInfo = base.parseUrl(options);
 
     if (!fields || fields.length === 0) {
         return urlInfo.params;
@@ -22,20 +35,20 @@ function getParams(fields) {
     return urlInfo.params[fields];
 }
 
-function addParams(paramsObj) {
-    const urlInfo = base.parseUrl(arguments[1]);
+function addParams(paramsObj, options) {
+    const urlInfo = base.parseUrl(options);
     const target = Object.assign(urlInfo.params, paramsObj || {});
 
-    urlInfo.paramsStr = qs.stringify(target, arguments[1]);
+    urlInfo.paramsStr = qs.stringify(target, options);
 
     return composeUrl(urlInfo);
 }
 
-function removeParams(fields) {
-    const urlInfo = base.parseUrl(arguments[1]);
+function removeParams(fields, options) {
+    const urlInfo = base.parseUrl(options);
 
     if (!fields || fields.length === 0) {
-       urlInfo.paramsStr = '';
+        urlInfo.paramsStr = '';
 
         return composeUrl(urlInfo);
     }
@@ -48,13 +61,9 @@ function removeParams(fields) {
         delete urlInfo.params[fields];
     }
 
-    urlInfo.paramsStr = qs.stringify(urlInfo.params, arguments[1]);
+    urlInfo.paramsStr = qs.stringify(urlInfo.params, options);
 
     return composeUrl(urlInfo);
-}
-
-function composeUrl(urlInfo) {
-    return `${urlInfo.url}${urlInfo.queryStr ? '?' + urlInfo.queryStr : ''}${urlInfo.hash ? '#' + urlInfo.hash : ''}${urlInfo.paramsStr ? urlInfo.hash ? '?' + paramsStr : '#?' + paramsStr : ''}`;
 }
 
 export default {
@@ -62,4 +71,4 @@ export default {
     addParams,
     removeParams,
     replaceParams: addParams,
-}
+};

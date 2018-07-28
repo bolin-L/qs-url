@@ -6,5 +6,14 @@ module.exports = {
         path: path.resolve(__dirname, 'dist'),
         filename: 'qs-url.js',
         libraryTarget: 'commonjs2'
+    },
+    module: {
+        rules: [
+            {
+                test: /\.js$/,
+                loader: 'babel-loader',
+                exclude: /node_modules/,
+            }
+        ]
     }
 };

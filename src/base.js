@@ -5,11 +5,12 @@ const URL_RE = /([^?#]+)\??([^#]*)#?([^?]*)\??([^#]*)/g; // host & search & hash
 let baseUrl = '';
 
 function getEnvBaseUrl() {
-    return typeof window === 'object' ? window.location.href : typeof weex === 'object' ? weex.config.bundleUrl : '';
+    const url = typeof window === 'object' ? window.location.href : '';
+    return typeof weex === 'object' ? weex.config.bundleUrl : url;
 }
 
 function getUrl() {
-    return baseUrl ? baseUrl : getEnvBaseUrl()
+    return baseUrl || getEnvBaseUrl();
 }
 
 export default {
@@ -21,7 +22,7 @@ export default {
 
     parseUrl(options) {
         const opts = Object.assign({
-            url: typeof options === 'string' ? options : getUrl()
+            url: typeof options === 'string' ? options : getUrl(),
         }, typeof options === 'object' ? options : {});
 
         const parts = URL_RE.exec(opts.url) || [];
@@ -34,9 +35,9 @@ export default {
             queryStr: parts[2] || '',
             query: qs.parse(parts[2], opts) || {},
             hash: parts[3] || '',
-            hashStr: `${parts[3]}${parts[4] ? '?'+parts[4] : '' }`,
+            hashStr: `${parts[3]}${parts[4] ? `?${parts[4]}` : ''}`,
             paramsStr: parts[4] || '',
             params: parts[4] ? qs.parse(parts[4], opts) : {},
-        }
-    }
+        };
+    },
 };

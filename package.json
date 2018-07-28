@@ -5,7 +5,8 @@
   "main": "./dist/qs-url.js",
   "scripts": {
     "test": "mocha ./test/index.js",
-    "build": "./node_modules/.bin/rimraf dist && NODE_ENV=production && ./node_modules/.bin/webpack --config webpack.config.js --mode=production"
+    "eslint": "./node_modules/eslint/bin/eslint.js  ./src",
+    "build": "npm run eslint && ./node_modules/.bin/rimraf dist && NODE_ENV=production && ./node_modules/.bin/webpack --config webpack.config.js --mode=production"
   },
   "repository": {
     "type": "git",
@@ -27,8 +28,14 @@
   },
   "devDependencies": {
     "babel-core": "^6.26.3",
+    "babel-eslint": "^8.2.6",
+    "babel-loader": "^7.1.5",
     "babel-preset-es2015": "^6.24.1",
     "chai": "^4.1.2",
+    "eslint": "^5.2.0",
+    "eslint-config-airbnb-base": "^13.0.0",
+    "eslint-loader": "^2.1.0",
+    "eslint-plugin-import": "^2.13.0",
     "mocha": "^5.2.0",
     "rimraf": "^2.6.2",
     "webpack": "^4.16.1",

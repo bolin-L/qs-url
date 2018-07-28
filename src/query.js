@@ -1,8 +1,22 @@
-import base from './base';
 import qs from 'qs';
+import base from './base';
 
-function getQuery(fields) {
-    const urlInfo = base.parseUrl(arguments[1]);
+function composeUrl(urlInfo) {
+    const query = urlInfo.queryStr ? `?${urlInfo.queryStr}` : '';
+    const hash = urlInfo.hash ? `#${urlInfo.hash}` : '';
+    let params = '';
+
+    if (urlInfo.hash) {
+        params = urlInfo.paramsStr ? `?${urlInfo.paramsStr}` : '';
+    } else {
+        params = urlInfo.paramsStr ? `#?${urlInfo.paramsStr}` : '';
+    }
+
+    return `${urlInfo.url}${query}${hash}${params}`;
+}
+
+function getQuery(fields, options) {
+    const urlInfo = base.parseUrl(options);
 
     if (!fields || fields.length === 0) {
         return urlInfo.query;
@@ -21,17 +35,17 @@ function getQuery(fields) {
     return urlInfo.query[fields];
 }
 
-function addQuery(queryObj) {
-    const urlInfo = base.parseUrl(arguments[1]);
+function addQuery(queryObj, options) {
+    const urlInfo = base.parseUrl(options);
     const target = Object.assign(urlInfo.query, queryObj || {});
 
-    urlInfo.queryStr = qs.stringify(target, arguments[1]);
+    urlInfo.queryStr = qs.stringify(target, options);
 
     return composeUrl(urlInfo);
 }
 
-function removeQuery(fields) {
-    const urlInfo = base.parseUrl(arguments[1]);
+function removeQuery(fields, options) {
+    const urlInfo = base.parseUrl(options);
 
     if (!fields || fields.length === 0) {
         urlInfo.queryStr = '';
@@ -47,14 +61,11 @@ function removeQuery(fields) {
         delete urlInfo.query[fields];
     }
 
-    urlInfo.queryStr  = qs.stringify(urlInfo.query, arguments[1]);
+    urlInfo.queryStr = qs.stringify(urlInfo.query, options);
 
     return composeUrl(urlInfo);
 }
 
-function composeUrl(urlInfo) {
-    return `${urlInfo.url}${urlInfo.queryStr ? '?' + urlInfo.queryStr : ''}${urlInfo.hash ? '#' + urlInfo.hash : ''}${urlInfo.paramsStr ? urlInfo.hash ? '?' + urlInfo.paramsStr : '#?' + urlInfo.paramsStr : ''}`;
-}
 
 function getPath(url) {
     const urlInfo = base.parseUrl(url);
@@ -62,14 +73,14 @@ function getPath(url) {
     return urlInfo.url;
 }
 
-function getPathAndQuery() {
-    const urlInfo = base.parseUrl(arguments[1]);
-    return `${urlInfo.url}${urlInfo.queryStr ? '?' + urlInfo.queryStr : ''}`;
+function getPathAndQuery(url) {
+    const urlInfo = base.parseUrl(url);
+    return `${urlInfo.url}${urlInfo.queryStr ? `?${urlInfo.queryStr}` : ''}`;
 }
 
-function getPathAndHash() {
-    const urlInfo = base.parseUrl(arguments[1]);
-    return `${urlInfo.url}${urlInfo.hashStr ? '#' + urlInfo.hashStr : ''}`;
+function getPathAndHash(url) {
+    const urlInfo = base.parseUrl(url);
+    return `${urlInfo.url}${urlInfo.hashStr ? `#${urlInfo.hashStr}` : ''}`;
 }
 
 export default {
@@ -80,4 +91,4 @@ export default {
     getPath,
     getPathAndQuery,
     getPathAndHash,
-}
+};

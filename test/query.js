@@ -153,7 +153,7 @@ describe('Query', () => {
         const BASE_URL = 'http://www.bolin.site?id=1&status=success#/user/info?name=lbl';
 
         it(`should be return ${BASE_URL}`, () => {
-            const url = query.getPathAndQuery('', BASE_URL);
+            const url = query.getPathAndQuery(BASE_URL);
 
             expect(url).to.equal('http://www.bolin.site?id=1&status=success');
         });
@@ -163,7 +163,7 @@ describe('Query', () => {
         const BASE_URL = 'http://www.bolin.site?id=1&status=success#/user/info?name=lbl';
 
         it(`should be return ${BASE_URL}`, () => {
-            const url = query.getPathAndHash('', BASE_URL);
+            const url = query.getPathAndHash(BASE_URL);
 
             expect(url).to.equal('http://www.bolin.site#/user/info?name=lbl');
         });
