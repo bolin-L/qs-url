@@ -16,6 +16,8 @@ function composeUrl(urlInfo) {
 }
 
 function getQuery(fields, options) {
+    options = base.formatOptions(options);
+
     const urlInfo = base.parseUrl(options);
 
     if (!fields || fields.length === 0) {
@@ -36,6 +38,8 @@ function getQuery(fields, options) {
 }
 
 function addQuery(queryObj, options) {
+    options = base.formatOptions(options);
+
     const urlInfo = base.parseUrl(options);
     const target = Object.assign(urlInfo.query, queryObj || {});
 
@@ -45,6 +49,8 @@ function addQuery(queryObj, options) {
 }
 
 function removeQuery(fields, options) {
+    options = base.formatOptions(options);
+
     const urlInfo = base.parseUrl(options);
 
     if (!fields || fields.length === 0) {

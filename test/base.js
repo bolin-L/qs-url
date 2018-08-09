@@ -109,17 +109,20 @@ describe('Base', () => {
         const urlInfo = base.parseUrl(url);
 
         it('should be return Object when parseUrl', () => {
-            expect(true).to.equal(true);
-            console.log(urlInfo);
-            // expect(urlInfo).to.deep.equal({
-            //     url: 'http://www.bolin.site/user/',
-            //     query: {},
-            //     queryStr: '',
-            //     hash: '',
-            //     hashStr: '',
-            //     params: {},
-            //     paramsStr: '',
-            // });
+            expect(urlInfo).to.deep.equal({
+                url: 'https://web.u51.com/appwakeupordownload/xzzj/rpd.html',
+                queryStr: 'campaign=%7B%22mt_id%22%3A%22485%22%7D&event_remark=sms&actioncode=2&actionvalue=http://www.baidu.com?campaign=%7B%22mt_id%22%3A%22485%22%7D&schemeUri=en51rpd%3A%2F%2Fapp.u51.com%2Fwebview%2Finside%3Furl%3Dhttp%253A%252F%252Fwww.baidu.com%253Fcampaign%253D%25257B%252522mt_id%252522%25253A%252522485%252522%25257D',
+                query:
+                    { campaign: '{"mt_id":"485"}',
+                        event_remark: 'sms',
+                        actioncode: '2',
+                        actionvalue: 'http://www.baidu.com?campaign={"mt_id":"485"}',
+                        schemeUri: 'en51rpd://app.u51.com/webview/inside?url=http%3A%2F%2Fwww.baidu.com%3Fcampaign%3D%257B%2522mt_id%2522%253A%2522485%2522%257D' },
+                hash: '',
+                hashStr: '',
+                paramsStr: '',
+                params: {}
+            });
         });
     });
 });

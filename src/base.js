@@ -13,6 +13,16 @@ function getUrl() {
     return baseUrl || getEnvBaseUrl();
 }
 
+function formatOptions(options) {
+    const opts = Object.assign({
+        url: typeof options === 'string' ? options : getUrl(),
+    }, typeof options === 'object' ? options : {});
+
+    opts.url = opts.url ? opts.url : getUrl();
+
+    return opts;
+}
+
 export default {
     setUrl(url) {
         baseUrl = url;
@@ -20,10 +30,10 @@ export default {
 
     getUrl,
 
+    formatOptions,
+
     parseUrl(options) {
-        const opts = Object.assign({
-            url: typeof options === 'string' ? options : getUrl(),
-        }, typeof options === 'object' ? options : {});
+        const opts = formatOptions(options);
 
         const parts = URL_RE.exec(opts.url) || [];
 
