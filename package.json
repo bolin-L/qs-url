@@ -1,10 +1,11 @@
 {
   "name": "qs-url",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "an util that add|remove|replace|get query and hash from url which base on qs",
   "main": "./dist/qs-url.js",
   "scripts": {
     "test": "mocha ./test/index.js",
+    "coverage": "nyc --reporter=lcov npm test",
     "eslint": "./node_modules/eslint/bin/eslint.js  ./src",
     "build": "npm run eslint && ./node_modules/.bin/rimraf dist && NODE_ENV=production && ./node_modules/.bin/webpack --config webpack.config.js --mode=production"
   },
@@ -37,6 +38,7 @@
     "eslint-loader": "^2.1.0",
     "eslint-plugin-import": "^2.13.0",
     "mocha": "^5.2.0",
+    "nyc": "^12.0.2",
     "rimraf": "^2.6.2",
     "webpack": "^4.16.1",
     "webpack-cli": "^3.1.0"
