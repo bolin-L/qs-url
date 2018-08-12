@@ -5,12 +5,24 @@ const URL_RE = /([^?#]+)\??([^#]*)#?([^?]*)\??([^#]*)/g; // host & search & hash
 let baseUrl = '';
 
 function getEnvBaseUrl() {
+    /* istanbul ignore next  */
     const url = typeof window === 'object' ? window.location.href : '';
+    /* istanbul ignore next  */
     return typeof weex === 'object' ? weex.config.bundleUrl : url;
 }
 
 function getUrl() {
     return baseUrl || getEnvBaseUrl();
+}
+
+function formatOptions(options) {
+    const opts = Object.assign({
+        url: typeof options === 'string' ? options : getUrl(),
+    }, options || {});
+
+    opts.url = opts.url ? opts.url : getUrl();
+
+    return opts;
 }
 
 export default {
@@ -20,10 +32,10 @@ export default {
 
     getUrl,
 
+    formatOptions,
+
     parseUrl(options) {
-        const opts = Object.assign({
-            url: typeof options === 'string' ? options : getUrl(),
-        }, typeof options === 'object' ? options : {});
+        const opts = formatOptions(options);
 
         const parts = URL_RE.exec(opts.url) || [];
 
@@ -33,11 +45,24 @@ export default {
         return {
             url: parts[1] || '',
             queryStr: parts[2] || '',
-            query: qs.parse(parts[2], opts) || {},
+            query: qs.parse(parts[2], opts),
             hash: parts[3] || '',
-            hashStr: `${parts[3]}${parts[4] ? `?${parts[4]}` : ''}`,
+            hashStr: parts[4] ? `${parts[3]}?${parts[4]}` : parts[3] || '',
             paramsStr: parts[4] || '',
             params: parts[4] ? qs.parse(parts[4], opts) : {},
         };
+    },
+    composeUrl(urlInfo) {
+        const query = urlInfo.queryStr ? `?${urlInfo.queryStr}` : '';
+        const hash = urlInfo.hash ? `#${urlInfo.hash}` : '';
+        let params = '';
+
+        if (urlInfo.hash) {
+            params = urlInfo.paramsStr ? `?${urlInfo.paramsStr}` : '';
+        } else {
+            params = urlInfo.paramsStr ? `#?${urlInfo.paramsStr}` : '';
+        }
+
+        return `${urlInfo.url}${query}${hash}${params}`;
     },
 };

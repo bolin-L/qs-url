@@ -1,20 +1,6 @@
 import qs from 'qs';
 import base from './base';
 
-function composeUrl(urlInfo) {
-    const query = urlInfo.queryStr ? `?${urlInfo.queryStr}` : '';
-    const hash = urlInfo.hash ? `#${urlInfo.hash}` : '';
-    let params = '';
-
-    if (urlInfo.hash) {
-        params = urlInfo.paramsStr ? `?${urlInfo.paramsStr}` : '';
-    } else {
-        params = urlInfo.paramsStr ? `#?${urlInfo.paramsStr}` : '';
-    }
-
-    return `${urlInfo.url}${query}${hash}${params}`;
-}
-
 function getParams(fields, options) {
     const urlInfo = base.parseUrl(options);
 
@@ -41,7 +27,7 @@ function addParams(paramsObj, options) {
 
     urlInfo.paramsStr = qs.stringify(target, options);
 
-    return composeUrl(urlInfo);
+    return base.composeUrl(urlInfo);
 }
 
 function removeParams(fields, options) {
@@ -50,7 +36,7 @@ function removeParams(fields, options) {
     if (!fields || fields.length === 0) {
         urlInfo.paramsStr = '';
 
-        return composeUrl(urlInfo);
+        return base.composeUrl(urlInfo);
     }
 
     if (Array.isArray(fields)) {
@@ -63,7 +49,7 @@ function removeParams(fields, options) {
 
     urlInfo.paramsStr = qs.stringify(urlInfo.params, options);
 
-    return composeUrl(urlInfo);
+    return base.composeUrl(urlInfo);
 }
 
 export default {
