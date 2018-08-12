@@ -52,10 +52,28 @@ describe('Query', () => {
             expect(url).to.equal(`${BASE_URL}?id=2&status=success#/user/info?name=lbl`);
         });
 
+        it(`should be return ${BASE_URL}#/user/info?name=lbl when input ''`, () => {
+            const url = query.addQuery('', `${BASE_URL}#/user/info?name=lbl`);
+
+            expect(url).to.equal(`${BASE_URL}#/user/info?name=lbl`);
+        });
+
         it(`should be return ${BASE_URL}?id=1&status=success#/user/info?name=lbl when input {id: 1}`, () => {
             const url = query.addQuery({id: 1}, `${BASE_URL}?id=2&status=success#/user/info?name=lbl`);
 
             expect(url).to.equal(`${BASE_URL}?id=1&status=success#/user/info?name=lbl`);
+        });
+
+        it(`should be return ${BASE_URL}?id=1&status=success#/user/info when input {id: 1}`, () => {
+            const url = query.addQuery({id: 1}, `${BASE_URL}?id=2&status=success#/user/info`);
+
+            expect(url).to.equal(`${BASE_URL}?id=1&status=success#/user/info`);
+        });
+
+        it(`should be return ${BASE_URL}?id=1&status=success#?name=lbl when input {id: 1}`, () => {
+            const url = query.addQuery({id: 1}, `${BASE_URL}?id=2&status=success#?name=lbl`);
+
+            expect(url).to.equal(`${BASE_URL}?id=1&status=success#?name=lbl`);
         });
     });
 
@@ -157,6 +175,12 @@ describe('Query', () => {
 
             expect(url).to.equal('http://www.bolin.site?id=1&status=success');
         });
+
+        it(`should be return http://www.bolin.site`, () => {
+            const url = query.getPathAndQuery('http://www.bolin.site#/user/info?name=lbl');
+
+            expect(url).to.equal('http://www.bolin.site');
+        });
     });
 
     describe('#getPathAndHash', () => {
@@ -166,6 +190,12 @@ describe('Query', () => {
             const url = query.getPathAndHash(BASE_URL);
 
             expect(url).to.equal('http://www.bolin.site#/user/info?name=lbl');
+        });
+
+        it(`should be return http://www.bolin.site`, () => {
+            const url = query.getPathAndHash('http://www.bolin.site?id=1&status=success');
+
+            expect(url).to.equal('http://www.bolin.site');
         });
     });
 });

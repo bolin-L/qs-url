@@ -35,4 +35,84 @@ describe('Params', () => {
             expect(name).to.equal(undefined);
         });
     });
+
+    describe('#addParams', () => {
+        const BASE_URL = 'http://www.bolin.site';
+
+        it(`should be return ${BASE_URL}?#id=2 when input {id: 2}`, () => {
+            const url = params.addParams({id: 2}, BASE_URL);
+
+            expect(url).to.equal(`${BASE_URL}#?id=2`);
+        });
+
+        it(`should be return ${BASE_URL}#?id=2&status=success when input {id: 2, status: 'success'}`, () => {
+            const url = params.addParams({id: 2, status: 'success'}, BASE_URL);
+
+            expect(url).to.equal(`${BASE_URL}#?id=2&status=success`);
+        });
+
+        it(`should be return ${BASE_URL}#?id=2&status=success when input {status: 'success'}`, () => {
+            const url = params.addParams({status: 'success'}, `${BASE_URL}#?id=2`);
+
+            expect(url).to.equal(`${BASE_URL}#?id=2&status=success`);
+        });
+
+        it(`should be return ${BASE_URL}#/user/info?id=2&status=success when input {id: 2, status: 'success'}`, () => {
+            const url = params.addParams({id: 2, status: 'success'}, `${BASE_URL}#/user/info`);
+
+            expect(url).to.equal(`${BASE_URL}#/user/info?id=2&status=success`);
+        });
+
+        it(`should be return ${BASE_URL}#/user/info when input''`, () => {
+            const url = params.addParams('', `${BASE_URL}#/user/info`);
+
+            expect(url).to.equal(`${BASE_URL}#/user/info`);
+        });
+    });
+
+    describe('#removeParams', () => {
+        const BASE_URL = 'http://www.bolin.site';
+
+        it(`should be return ${BASE_URL} when input null`, () => {
+            const url = params.removeParams(null, BASE_URL);
+
+            expect(url).to.equal(`${BASE_URL}`);
+        });
+
+        it(`should be return ${BASE_URL} when input null`, () => {
+            const url = params.removeParams(null, `${BASE_URL}#?id=1&status=success`);
+
+            expect(url).to.equal(`${BASE_URL}`);
+        });
+
+        it(`should be return ${BASE_URL} when input id`, () => {
+            const url = params.removeParams('id', `${BASE_URL}#?id=1`);
+
+            expect(url).to.equal(`${BASE_URL}`);
+        });
+
+        it(`should be return ${BASE_URL} when input ['id']`, () => {
+            const url = params.removeParams(['id'], `${BASE_URL}#?id=1`);
+
+            expect(url).to.equal(`${BASE_URL}`);
+        });
+
+        it(`should be return ${BASE_URL} when input ['id', 'status']`, () => {
+            const url = params.removeParams(['id', 'status'], `${BASE_URL}#?id=1&status=success`);
+
+            expect(url).to.equal(`${BASE_URL}`);
+        });
+
+        it(`should be return ${BASE_URL}#/user/info?id=1 when input 'status'`, () => {
+            const url = params.removeParams('status', `${BASE_URL}#/user/info?id=1&=status=success`);
+
+            expect(url).to.equal(`${BASE_URL}#/user/info?id=1`);
+        });
+
+        it(`should be return ${BASE_URL}?name=lbl#/user/info when input ['id', 'status']`, () => {
+            const url = params.removeParams(['id', 'status'], `${BASE_URL}?name=lbl#/user/info?id=1&status=success`);
+
+            expect(url).to.equal(`${BASE_URL}?name=lbl#/user/info`);
+        });
+    });
 });
