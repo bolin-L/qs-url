@@ -2,10 +2,9 @@ language: node_js
 node_js:
   - "node"
 script:
-  - npm run test
-  - npm run eslint
-  - npm run build
+  - npm test
 branches:
   only:
     - master
+    - dev
     - next
