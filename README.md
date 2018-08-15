@@ -1,6 +1,9 @@
 
 # qs-url
 
+[![Build Status](https://travis-ci.com/bolin-L/qs-url.svg?branch=master)](https://travis-ci.com/bolin-L/qs-url)
+[![Coverage Status](https://coveralls.io/repos/github/bolin-L/qs-url/badge.svg?branch=master)](https://coveralls.io/github/bolin-L/qs-url?branch=master)
+
 A url and querystring parsing library extend from [fs library](https://github.com/ljharb/qs)
 
 
