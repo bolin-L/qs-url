@@ -1,14 +1,23 @@
-import base from '../src/base';
-import qsUrl from '../src/index';
-import { expect } from 'chai';
+import base from '../src/base.js';
+import qsUrl from '../src/index.js';
+// import { expect } from 'chai';
+const expect = require('chai').expect;
 
 const EXAMPLE_URL = 'http://www.bolin.site/user/?id=1#/user/info?name=lbl&userId=456';
 
 describe('Base', () => {
+
     describe('#getUrl', () => {
 
         it(`should be '' when get`, () => {
             expect(base.getUrl()).to.equal('');
+        })
+    });
+
+    describe('#formatOptions', () => {
+
+        it(`should be {url: "'} when get`, () => {
+            expect(base.formatOptions()).to.deep.equal({url: ''});
         })
     });
 
@@ -53,6 +62,38 @@ describe('Base', () => {
             qsUrl.setBaseUrl(url);
             expect(qsUrl.getBaseUrl()).to.equal(url);
         })
+    });
+
+    describe('#parseUrl', () => {
+        const urlInfo = base.parseUrl('');
+
+        it('should be return empty Object when parseUrl input empty', () => {
+            expect(urlInfo).to.deep.equal({
+                url: '',
+                query: {},
+                queryStr: '',
+                hash: '',
+                hashStr: '',
+                params: {},
+                paramsStr: '',
+            });
+        });
+    });
+
+    describe('#parseUrl', () => {
+        const urlInfo = base.parseUrl('12345abcdef');
+
+        it('should be return empty Object when parseUrl input incorrect string', () => {
+            expect(urlInfo).to.deep.equal({
+                url: '12345abcdef',
+                query: {},
+                queryStr: '',
+                hash: '',
+                hashStr: '',
+                params: {},
+                paramsStr: '',
+            });
+        });
     });
 
     describe('#parseUrl', () => {

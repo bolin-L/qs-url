@@ -1,0 +1,11 @@
+language: node_js
+node_js:
+  - "node"
+script:
+  - npm run test
+  - npm run eslint
+  - npm run build
+branches:
+  only:
+    - master
+    - next
