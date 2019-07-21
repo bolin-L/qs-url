@@ -5,6 +5,7 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'qs-url.js',
+        globalObject: 'this',
         libraryTarget: 'umd',
     },
     module: {

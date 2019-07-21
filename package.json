@@ -1,10 +1,10 @@
 {
   "name": "qs-url",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "an util that add|remove|replace|get query and hash from url which base on qs",
   "main": "./dist/qs-url.js",
   "scripts": {
-    "test": "mocha ./test/index.js --compilers js:@babel/register",
+    "test": "./node_modules/mocha/bin/mocha ./test/index.js --compilers js:@babel/register --no-deprecation",
     "coverage": "./node_modules/nyc/bin/nyc.js --reporter=lcov npm test",
     "eslint": "./node_modules/eslint/bin/eslint.js  ./src",
     "build": "npm run eslint && ./node_modules/.bin/rimraf dist && NODE_ENV=production && ./node_modules/.bin/webpack --config webpack.config.js --mode=production"
