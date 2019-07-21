@@ -5,7 +5,7 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'qs-url.js',
-        libraryTarget: 'commonjs2'
+        libraryTarget: 'umd',
     },
     module: {
         rules: [
