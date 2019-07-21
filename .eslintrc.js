@@ -30,12 +30,5 @@ module.exports = {
     "import/no-unresolved": ["error", {
       "ignore": ["week-ui", "weex-kit"]
     }]
-  },
-  settings: {
-    "import/resolver": {
-      webpack: {
-        config: path.resolve(__dirname, "compile/webpack.base.js")
-      }
-    }
   }
 };
