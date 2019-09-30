@@ -7,6 +7,8 @@ module.exports = {
         filename: 'qs-url.js',
         globalObject: 'this',
         libraryTarget: 'umd',
+        globalObject: 'this',
+        libraryExport: 'default',
     },
     module: {
         rules: [
@@ -14,7 +16,7 @@ module.exports = {
                 test: /\.js$/,
                 loader: 'babel-loader',
                 exclude: /node_modules/,
-            }
-        ]
-    }
+            },
+        ],
+    },
 };
