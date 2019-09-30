@@ -71,9 +71,9 @@ describe('Query', () => {
         });
 
         it(`should be return ${BASE_URL}?id=1&status=success#?name=lbl when input {id: 1}`, () => {
-            const url = query.addQuery({id: 1}, `${BASE_URL}?id=2&status=success#?name=lbl`);
+            const url = query.addQuery({id: 1}, `${BASE_URL}?id=2&status=success#/?name=lbl`);
 
-            expect(url).to.equal(`${BASE_URL}?id=1&status=success#?name=lbl`);
+            expect(url).to.equal(`${BASE_URL}?id=1&status=success#/?name=lbl`);
         });
     });
 
