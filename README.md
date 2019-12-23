@@ -67,13 +67,18 @@ const query3 = qsUrl.getQuery('status') // success
 
 ## CHANGE LOG
 
-### 1.0.4 - [ 2019-05-07 ]
+### 1.1.1 - [ 2019-12-23 ]
 
-[ M ] - 升级babel到7.0+
-[ M ] - 打包转译Object.assign
+[ M ] - 支持端口匹配
+[ A ] - 添加parseUrl2方法解析url，返回正则匹配结果map
 
 ### 1.1.0 - [ 2019-09-30 ]
 
 [ M ] - 修改底层URL匹配正则，在search与params的key-value中支持特殊字符
 [ M ] - 修改对应的单元测试
 [ M ] - 修改webpack打包配置，全局变量设置为this, 支持浏览器/node等使用，全部方法暴露到全局变量下
+
+### 1.0.4 - [ 2019-05-07 ]
+
+[ M ] - 升级babel到7.0+
+[ M ] - 打包转译Object.assign

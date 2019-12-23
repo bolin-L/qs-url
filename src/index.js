@@ -22,4 +22,5 @@ export default {
     setBaseUrl: base.setUrl,
     getBaseUrl: base.getUrl,
     parseUrl: base.parseUrl,
+    parseUrl2: base.parseUrl2,
 };

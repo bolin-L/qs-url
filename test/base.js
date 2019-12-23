@@ -176,4 +176,27 @@ describe('Base', () => {
             });
         });
     });
+
+    describe('#parseUrl2', () => {
+        const url = 'https://bolin.site:80/a/b/?test=lb?l12/#/image/c/d?name=lbl&age=#123&phoneSource=#ffff?';
+        const parts = base.parseUrl2(url);
+
+        it('should be return Object when parseUrl2', () => {
+            expect(parts).to.deep.equal({
+                protocol: 'https://',
+                protocolPure: 'https',
+                hostPortPath: 'bolin.site:80/a/b/',
+                host: 'bolin.site',
+                port: ':80',
+                portPure: '80',
+                path: '/a/b/',
+                search: '?test=lb?l12/',
+                searchKvPairs: 'test=lb?l12/',
+                hash: '#/image/c/d',
+                hashPure: 'image/c/d',
+                params: '?name=lbl&age=#123&phoneSource=#ffff?',
+                paramsKvPairs: 'name=lbl&age=#123&phoneSource=#ffff?',
+            });
+        });
+    });
 });
